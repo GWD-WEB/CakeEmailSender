@@ -11,12 +11,12 @@
     },
     "autoload": {
         "psr-4": {
-            "EmailSender\\": "src"
+            "CakeEmailSender\\": "src"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "EmailSender\\Test\\": "tests",
+            "CakeEmailSender\\Test\\": "tests",
             "Cake\\Test\\": "./vendor/cakephp/cakephp/tests"
         }
     }
