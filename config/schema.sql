@@ -1,0 +1,16 @@
+CREATE TABLE `email_sender_emails` (
+	`id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+	`email_to` VARCHAR(255) NOT NULL,
+	`cc` VARCHAR(255) NOT NULL,
+	`bcc` VARCHAR(255) NOT NULL,
+	`subject` VARCHAR(255) NOT NULL,
+	`template` VARCHAR(255) NOT NULL,
+	`layout` VARCHAR(255) NOT NULL,
+	`profile` VARCHAR(255) NOT NULL,
+	`view_vars` TEXT NOT NULL,
+	`created` DATETIME NOT NULL,
+	`sent` TINYINT(1) NOT NULL,
+	`sent_at` DATETIME NOT NULL,
+	PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB;
