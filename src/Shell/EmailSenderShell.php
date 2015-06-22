@@ -21,9 +21,12 @@ class EmailSenderShell extends Shell
     	foreach($emails_to_send as $item){
     		$email = new Email($item->profile);
     		$email->subject($item->subject);
-    		$email->to(unserialize($item->email_to));
-    		$email->cc(unserialize($item->cc));
-    		$email->bcc(unserialize($item->bcc));
+		if(!empty($item->email_to))
+	    		$email->to(unserialize($item->email_to));
+		if(!empty($item->cc))
+	    		$email->cc(unserialize($item->cc));
+		if(!empty($item->bcc))
+	    		$email->bcc(unserialize($item->bcc));
     		$email->send("");
     		unset($email);
     		$this->Emails->markAsSent($item);
