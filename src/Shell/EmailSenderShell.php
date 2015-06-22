@@ -21,6 +21,8 @@ class EmailSenderShell extends Shell
     	foreach($emails_to_send as $item){
     		$email = new Email($item->profile);
     		$email->subject($item->subject);
+		if(!empty($item->view_vars))
+			$email->viewVars(unserialize($item->view_vars));
 		if(!empty($item->email_to))
 	    		$email->to(unserialize($item->email_to));
 		if(!empty($item->cc))
