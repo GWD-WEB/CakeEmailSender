@@ -19,22 +19,22 @@ class EmailSenderShell extends Shell
     public function main($domain) {
     	$emails_to_send = $this->Emails->find('all')->where(['sent'=>false]);
     	foreach($emails_to_send as $item){
-			$email = new Email($item->profile);
-			$email->domain($domain);
-			$email->subject($item->subject);
-			if(!empty($item->template) && !empty($item->layout))
-				$email->template($item->template, $item->layout);
-			if(!empty($item->view_vars))
-				$email->viewVars(unserialize($item->view_vars));
-			if(!empty($item->email_to))
-				$email->to(unserialize($item->email_to));
-			if(!empty($item->cc))
-				$email->cc(unserialize($item->cc));
-			if(!empty($item->bcc))
-				$email->bcc(unserialize($item->bcc));
-			if(!empty($item->email_format))
-				$email->emailFormat($item->email_format);
-			try{
+    		try{
+				$email = new Email($item->profile);
+				$email->domain($domain);
+				$email->subject($item->subject);
+				if(!empty($item->template) && !empty($item->layout))
+					$email->template($item->template, $item->layout);
+				if(!empty($item->view_vars))
+					$email->viewVars(unserialize($item->view_vars));
+				if(!empty($item->email_to))
+					$email->to(unserialize($item->email_to));
+				if(!empty($item->cc))
+					$email->cc(unserialize($item->cc));
+				if(!empty($item->bcc))
+					$email->bcc(unserialize($item->bcc));
+				if(!empty($item->email_format))
+					$email->emailFormat($item->email_format);
 				$email->send("");
 				unset($email);
 				$this->Emails->markAsSent($item);
