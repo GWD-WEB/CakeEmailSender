@@ -32,6 +32,8 @@ class EmailSenderShell extends Shell
 				$email->cc(unserialize($item->cc));
 			if(!empty($item->bcc))
 				$email->bcc(unserialize($item->bcc));
+			if(!empty($item->email_format))
+				$email->emailFormat($item->email_format);
 			$email->send("");
 			unset($email);
 			$this->Emails->markAsSent($item);

@@ -18,6 +18,7 @@ class EmailEntity extends Entity
         'serial' => true,
         'sent' => true,
         'sent_at' => true,
+        'email_format'=>true
     ];
     
 }
