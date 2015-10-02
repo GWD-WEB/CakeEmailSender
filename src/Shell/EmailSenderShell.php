@@ -38,5 +38,30 @@ class EmailSenderShell extends Shell
     		
     	}
     }
+    
+    public function send($id, $domain) {
+    	$email_to_send = $this->Emails->get($id);
+    	if($email_to_send->sent){
+    		$this->out(__('This E-mail was already sent. Use the future resend function instead'));
+    		return;
+    	}
+    		$email = new Email($email_to_send->profile);
+    		$email->domain($domain);
+    		$email->subject($email_to_send->subject);
+    		if(!empty($email_to_send->template) && !empty($email_to_send->layout))
+    			$email->template($email_to_send->template, $email_to_send->layout);
+    		if(!empty($email_to_send->view_vars))
+    			$email->viewVars(unserialize($email_to_send->view_vars));
+    		if(!empty($email_to_send->email_to))
+    			$email->to(unserialize($email_to_send->email_to));
+    		if(!empty($email_to_send->cc))
+    			$email->cc(unserialize($email_to_send->cc));
+    		if(!empty($email_to_send->bcc))
+    			$email->bcc(unserialize($email_to_send->bcc));
+    		$email->send("");
+    		unset($email);
+    		$this->Emails->markAsSent($email_to_send);
+    
+    }
 }
 
